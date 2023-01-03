@@ -1,0 +1,29 @@
+{
+  "library": "spring-boot",
+  "dateLibrary": "java8",
+  "hideGenerationTimestamp": true,
+  "modelPackage": "com.packt.modern.api.model",
+  "apiPackage": "com.packt.modern.api",
+  "invokerPackage": "com.packt.modern.api",
+  "serializableModel": true,
+  "useTags": true,
+  "useGzipFeature": true,
+  "hateoas": true,
+  "unhandledException": true,
+  "useSpringBoot3": true,
+  "useSwaggerUI": true,
+  "typeMappings": {
+    "URI": "URI",
+    "BigDecimal": "BigDecimal",
+    "EntityModel": "EntityModel"
+  },
+  "importMappings": {
+    "BigDecimal": "java.math.BigDecimal",
+    "ResourceSupport": "org.springframework.hateoas.RepresentationModel",
+    "Link": "org.springframework.hateoas.Link",
+    "EntityModel": "org.springframework.hateoas.EntityModel"
+  },
+  "schemaMappings": {
+    "BigDecimal": "java.math.BigDecimal"
+  }
+}

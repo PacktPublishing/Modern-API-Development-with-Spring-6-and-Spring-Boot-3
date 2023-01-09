@@ -8,7 +8,7 @@ import org.apache.logging.log4j.util.Strings;
  * Complex type that contains error details for a REST API calls.
  *
  * @author : github.com/sharmasourabh
- * @project : Chapter03 - Modern API Development with Spring and Spring Boot
+ * @project : Chapter03 - Modern API Development with Spring and Spring Boot Ed 2
  * @created : 31/10/2022, Monday
  **/
 public class Error {

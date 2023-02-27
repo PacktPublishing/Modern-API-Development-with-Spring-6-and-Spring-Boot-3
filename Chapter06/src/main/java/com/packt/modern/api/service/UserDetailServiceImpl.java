@@ -2,21 +2,19 @@ package com.packt.modern.api.service;
 
 import com.packt.modern.api.entity.UserEntity;
 import com.packt.modern.api.repository.UserRepository;
-import java.util.Optional;
 import org.apache.logging.log4j.util.Strings;
-import org.springframework.security.config.core.GrantedAuthorityDefaults;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.GrantedAuthoritiesContainer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 /**
  * @author : github.com/sharmasourabh
- * @project : Chapter06 - Modern API Development with Spring and Spring Boot
- **/
+ * @project : Chapter06 - Modern API Development with Spring and Spring Boot Ed 2
+ */
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
 
@@ -33,8 +31,9 @@ public class UserDetailServiceImpl implements UserDetailsService {
     }
     final String uname = username.trim();
     Optional<UserEntity> oUserEntity = userRepo.findByUsername(uname);
-    UserEntity userEntity = oUserEntity.orElseThrow(
-        () -> new UsernameNotFoundException(String.format("Given user(%s) not found.", uname)));
+    UserEntity userEntity =
+        oUserEntity.orElseThrow(
+            () -> new UsernameNotFoundException(String.format("Given user(%s) not found.", uname)));
     return User.builder()
         .username(userEntity.getUsername())
         .password(userEntity.getPassword())

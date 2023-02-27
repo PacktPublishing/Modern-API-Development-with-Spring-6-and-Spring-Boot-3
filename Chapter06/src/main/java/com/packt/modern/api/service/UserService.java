@@ -6,12 +6,13 @@ import com.packt.modern.api.entity.UserEntity;
 import com.packt.modern.api.model.RefreshToken;
 import com.packt.modern.api.model.SignedInUser;
 import com.packt.modern.api.model.User;
+
 import java.util.Optional;
 
 /**
  * @author : github.com/sharmasourabh
- * @project : Chapter06 - Modern API Development with Spring and Spring Boot
- **/
+ * @project : Chapter06 - Modern API Development with Spring and Spring Boot Ed 2
+ */
 public interface UserService {
 
   void deleteCustomerById(String id);

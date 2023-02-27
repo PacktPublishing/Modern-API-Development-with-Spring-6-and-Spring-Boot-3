@@ -1,24 +1,25 @@
 package com.packt.modern.api.controller;
 
-import static org.springframework.http.ResponseEntity.ok;
-
 import com.packt.modern.api.ProductApi;
-import com.packt.modern.api.model.Product;
 import com.packt.modern.api.hateoas.ProductRepresentationModelAssembler;
+import com.packt.modern.api.model.Product;
 import com.packt.modern.api.service.ProductService;
-import java.util.List;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
+import static org.springframework.http.ResponseEntity.ok;
+
 /**
  * @author : github.com/sharmasourabh
- * @project : Chapter06 - Modern API Development with Spring and Spring Boot
- **/
+ * @project : Chapter06 - Modern API Development with Spring and Spring Boot Ed 2
+ */
 @RestController
 public class ProductController implements ProductApi {
 
-  private ProductService service;
+  private final ProductService service;
   private final ProductRepresentationModelAssembler assembler;
 
   public ProductController(ProductService service, ProductRepresentationModelAssembler assembler) {
@@ -28,12 +29,16 @@ public class ProductController implements ProductApi {
 
   @Override
   public ResponseEntity<Product> getProduct(String id) {
-    return service.getProduct(id).map(assembler::toModel).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    return service
+        .getProduct(id)
+        .map(assembler::toModel)
+        .map(ResponseEntity::ok)
+        .orElse(ResponseEntity.notFound().build());
   }
 
   @Override
-  public ResponseEntity<List<Product>> queryProducts(@Valid String tag, @Valid String name,
-      @Valid Integer page, @Valid Integer size) {
+  public ResponseEntity<List<Product>> queryProducts(
+      @Valid String tag, @Valid String name, @Valid Integer page, @Valid Integer size) {
     return ok(assembler.toListModel(service.getAllProducts()));
   }
 }

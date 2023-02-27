@@ -1,29 +1,30 @@
 package com.packt.modern.api.controller;
 
-import static org.springframework.http.ResponseEntity.accepted;
-import static org.springframework.http.ResponseEntity.ok;
-
 import com.packt.modern.api.CartApi;
 import com.packt.modern.api.hateoas.CartRepresentationModelAssembler;
 import com.packt.modern.api.model.Cart;
 import com.packt.modern.api.model.Item;
 import com.packt.modern.api.service.CartService;
-import java.util.List;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
+import static org.springframework.http.ResponseEntity.accepted;
+import static org.springframework.http.ResponseEntity.ok;
+
 /**
  * @author : github.com/sharmasourabh
- * @project : Chapter06 - Modern API Development with Spring and Spring Boot
- **/
+ * @project : Chapter06 - Modern API Development with Spring and Spring Boot Ed 2
+ */
 @RestController
 public class CartsController implements CartApi {
 
   private static final Logger log = LoggerFactory.getLogger(CartsController.class);
-  private CartService service;
+  private final CartService service;
   private final CartRepresentationModelAssembler assembler;
 
   public CartsController(CartService service, CartRepresentationModelAssembler assembler) {
@@ -38,8 +39,8 @@ public class CartsController implements CartApi {
   }
 
   @Override
-  public ResponseEntity<List<Item>> addOrReplaceItemsByCustomerId(String customerId,
-      @Valid Item item) {
+  public ResponseEntity<List<Item>> addOrReplaceItemsByCustomerId(
+      String customerId, @Valid Item item) {
     return ok(service.addOrReplaceItemsByCustomerId(customerId, item));
   }
 

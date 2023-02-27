@@ -74,7 +74,7 @@ insert into ecomm.product_tag values ('837ab141-399e-4c1f-9abc-bace40296bac', '0
 insert into ecomm.product_tag values ('837ab141-399e-4c1f-9abc-bace40296bac', '00000000-b5c6-4896-987c-f30f3678f605');
 insert into ecomm.product_tag values ('837ab141-399e-4c1f-9abc-bace40296bac', '00000000-b5c6-4896-987c-f30f3678f601');
 
-create TABLE IF NOT EXISTS ecomm.user (
+create TABLE IF NOT EXISTS ecomm."user" (
 	id uuid NOT NULL DEFAULT random_uuid(),
 	username varchar(16),
 	password varchar(72),
@@ -93,7 +93,7 @@ create TABLE IF NOT EXISTS ecomm.user_token (
 	user_id uuid NOT NULL,
 	PRIMARY KEY(id),
 	FOREIGN KEY (user_id)
-		REFERENCES ecomm.user(id)
+		REFERENCES ecomm."user"(id)
 );
 
 create TABLE IF NOT EXISTS ecomm.address (
@@ -112,7 +112,7 @@ create TABLE IF NOT EXISTS ecomm.user_address (
 	user_id uuid NOT NULL DEFAULT random_uuid(),
 	address_id uuid NOT NULL,
 	FOREIGN KEY (user_id)
-		REFERENCES ecomm.user(id),
+		REFERENCES ecomm."user"(id),
 	FOREIGN KEY(address_id)
 		REFERENCES ecomm.address(id)
 );
@@ -132,7 +132,7 @@ create TABLE IF NOT EXISTS ecomm.card (
 	expires varchar(5),
 	cvv varchar(4),
 	FOREIGN KEY(user_id)
-		REFERENCES ecomm.user(id),
+		REFERENCES ecomm."user"(id),
 	PRIMARY KEY(id)
 );
 
@@ -155,7 +155,7 @@ create TABLE IF NOT EXISTS ecomm.orders (
 	status varchar(24),
 	PRIMARY KEY(id),
 	FOREIGN KEY(customer_id)
-		REFERENCES ecomm.user(id),
+		REFERENCES ecomm."user"(id),
 	FOREIGN KEY(address_id)
 		REFERENCES ecomm.address(id),
 	FOREIGN KEY(card_id)
@@ -187,7 +187,7 @@ create TABLE IF NOT EXISTS ecomm.order_item (
 		REFERENCES ecomm.item(id)
 );
 
-create TABLE IF NOT EXISTS ecomm.authorization (
+create TABLE IF NOT EXISTS ecomm."authorization" (
   id uuid NOT NULL DEFAULT random_uuid(),
 	order_id uuid NOT NULL DEFAULT random_uuid(),
 	authorized boolean,
@@ -203,7 +203,7 @@ create TABLE IF NOT EXISTS ecomm.cart (
   id uuid NOT NULL DEFAULT random_uuid(),
 	user_id uuid NOT NULL DEFAULT random_uuid(),
 	FOREIGN KEY (user_id)
-		REFERENCES ecomm.user(id),
+		REFERENCES ecomm."user"(id),
 	PRIMARY KEY(id)
 );
 
@@ -216,8 +216,8 @@ create TABLE IF NOT EXISTS ecomm.cart_item (
 		REFERENCES ecomm.item(id)
 );
 
-insert into ecomm.user (id, username, password, first_name, last_name, email, phone, user_status, role) values('a1b9b31d-e73c-4112-af7c-b68530f38222', 'scott', '{bcrypt}$2a$10$neR0EcYY5./tLVp4litNyuBy/kfrTsqEv8hiyqEKX0TXIQQwC/5Rm', 'Bruce', 'Scott', 'bruce@scott.db', '234234234', 'ACTIVE', 'USER');
-insert into ecomm.user (id, username, password, first_name, last_name, email, phone, user_status, role) values('a1b9b31d-e73c-4112-af7c-b68530f38223', 'scott2', '{bcrypt}$2a$10$neR0EcYY5./tLVp4litNyuBy/kfrTsqEv8hiyqEKX0TXIQQwC/5Rm', 'Bruce', 'Scott', 'bruce2@scott.db', '234234234', 'ACTIVE', 'ADMIN');
+insert into ecomm."user" (id, username, password, first_name, last_name, email, phone, user_status, role) values('a1b9b31d-e73c-4112-af7c-b68530f38222', 'scott', '{bcrypt}$2a$10$neR0EcYY5./tLVp4litNyuBy/kfrTsqEv8hiyqEKX0TXIQQwC/5Rm', 'Bruce', 'Scott', 'bruce@scott.db', '234234234', 'ACTIVE', 'USER');
+insert into ecomm."user" (id, username, password, first_name, last_name, email, phone, user_status, role) values('a1b9b31d-e73c-4112-af7c-b68530f38223', 'scott2', '{bcrypt}$2a$10$neR0EcYY5./tLVp4litNyuBy/kfrTsqEv8hiyqEKX0TXIQQwC/5Rm', 'Bruce', 'Scott', 'bruce2@scott.db', '234234234', 'ACTIVE', 'ADMIN');
 INSERT INTO ecomm.address VALUES ('a731fda1-aaad-42ea-bdbc-a27eeebe2cc0', '9I-999', 'Fraser Suites Le Claridge', 'Champs-Elysees', 'Paris', 'Île-de-France', 'France', '75008');
 insert into ecomm.user_address values ('a1b9b31d-e73c-4112-af7c-b68530f38222', 'a731fda1-aaad-42ea-bdbc-a27eeebe2cc0');
 INSERT INTO ecomm.card VALUES ('618ffaff-cbcd-48d4-8848-a15601e6725b', '999-999-999-999', 'a1b9b31d-e73c-4112-af7c-b68530f38222', 'User', '12/28', '0000');

@@ -1,23 +1,16 @@
 package com.packt.modern.api.entity;
 
+import jakarta.persistence.*;
+
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 /**
  * @author : github.com/sharmasourabh
- * @project : Chapter06 - Modern API Development with Spring and Spring Boot
- **/
+ * @project : Chapter06 - Modern API Development with Spring and Spring Boot Ed 2
+ */
 @Entity
 @Table(name = "item")
 public class ItemEntity {
@@ -79,7 +72,7 @@ public class ItemEntity {
     return this;
   }
 
-/*  public CartEntity getCart() {
+  /*  public CartEntity getCart() {
     return cart;
   }
 
@@ -97,13 +90,14 @@ public class ItemEntity {
       return false;
     }
     ItemEntity that = (ItemEntity) o;
-    return quantity == that.quantity && product.equals(that.product) && Objects
-        .equals(price, that.price);// && Objects.equals(cart, that.cart);
+    return quantity == that.quantity
+        && product.equals(that.product)
+        && Objects.equals(price, that.price); // && Objects.equals(cart, that.cart);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(product, price, quantity);//, cart);
+    return Objects.hash(product, price, quantity); // , cart);
   }
 
   public List<CartEntity> getCart() {

@@ -1,22 +1,16 @@
 package com.packt.modern.api.entity;
 
+import jakarta.persistence.*;
+
 import java.sql.Timestamp;
 import java.util.UUID;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 /**
  * @author : github.com/sharmasourabh
- * @project : Chapter06 - Modern API Development with Spring and Spring Boot
- **/
+ * @project : Chapter06 - Modern API Development with Spring and Spring Boot Ed 2
+ */
 @Entity
-@Table(name = "authorization")
+@Table(name = "\"authorization\"")
 public class AuthorizationEntity {
 
   @Id
@@ -24,10 +18,10 @@ public class AuthorizationEntity {
   @Column(name = "ID", updatable = false, nullable = false)
   private UUID id;
 
-  @Column(name="AUTHORIZED")
+  @Column(name = "AUTHORIZED")
   private boolean authorized;
 
-  @Column(name="TIME")
+  @Column(name = "TIME")
   private Timestamp time;
 
   @Column(name = "MESSAGE")

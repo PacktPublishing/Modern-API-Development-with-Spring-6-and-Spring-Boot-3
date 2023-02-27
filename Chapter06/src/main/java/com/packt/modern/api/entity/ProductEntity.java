@@ -1,21 +1,12 @@
 package com.packt.modern.api.entity;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+
 import java.math.BigDecimal;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "product")
@@ -47,15 +38,19 @@ public class ProductEntity {
   @JoinTable(
       name = "PRODUCT_TAG",
       joinColumns = @JoinColumn(name = "PRODUCT_ID"),
-      inverseJoinColumns = @JoinColumn(name = "TAG_ID")
-  )
-  private List<TagEntity> tags = Collections.emptyList();;
+      inverseJoinColumns = @JoinColumn(name = "TAG_ID"))
+  private List<TagEntity> tags = new ArrayList<>();
 
   @OneToMany(mappedBy = "product")
   private List<ItemEntity> items;
 
-  public ProductEntity(UUID id, @NotNull(message = "Product name is required.") String name,
-      String description, BigDecimal price, int count, String imageUrl) {
+  public ProductEntity(
+      UUID id,
+      @NotNull(message = "Product name is required.") String name,
+      String description,
+      BigDecimal price,
+      int count,
+      String imageUrl) {
     this.id = id;
     this.name = name;
     this.price = price;
@@ -64,8 +59,7 @@ public class ProductEntity {
     this.imageUrl = imageUrl;
   }
 
-  public ProductEntity() {
-  }
+  public ProductEntity() {}
 
   public UUID getId() {
     return id;

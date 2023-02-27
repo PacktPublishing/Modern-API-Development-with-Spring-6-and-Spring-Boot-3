@@ -681,8 +681,8 @@ paths:
             schema:
               $ref: '#/components/schemas/ShippingReq'
       responses:
-        200:
-          description: For successful fetch.
+        201:
+          description: For successful post.
           content:
             application/xml:
               schema:

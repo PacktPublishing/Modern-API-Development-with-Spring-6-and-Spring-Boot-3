@@ -1,25 +1,16 @@
 package com.packt.modern.api.entity;
 
-import java.util.Collections;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 /**
  * @author : github.com/sharmasourabh
- * @project : Chapter06 - Modern API Development with Spring and Spring Boot
- **/
+ * @project : Chapter06 - Modern API Development with Spring and Spring Boot Ed 2
+ */
 @Entity
 @Table(name = "cart")
 public class CartEntity {
@@ -33,15 +24,12 @@ public class CartEntity {
   @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
   private UserEntity user;
 
-  @ManyToMany(
-      cascade = CascadeType.ALL
-  )
+  @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(
       name = "CART_ITEM",
       joinColumns = @JoinColumn(name = "CART_ID"),
-      inverseJoinColumns = @JoinColumn(name = "ITEM_ID")
-  )
-  private List<ItemEntity> items = Collections.emptyList();
+      inverseJoinColumns = @JoinColumn(name = "ITEM_ID"))
+  private List<ItemEntity> items = new ArrayList<>();
 
   public UUID getId() {
     return id;

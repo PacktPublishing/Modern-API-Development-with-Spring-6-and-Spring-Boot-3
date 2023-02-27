@@ -1,9 +1,5 @@
 package com.packt.modern.api.controller;
 
-import static org.springframework.http.ResponseEntity.accepted;
-import static org.springframework.http.ResponseEntity.ok;
-import static org.springframework.http.ResponseEntity.status;
-
 import com.packt.modern.api.UserApi;
 import com.packt.modern.api.entity.UserEntity;
 import com.packt.modern.api.exception.InvalidRefreshTokenException;
@@ -12,17 +8,19 @@ import com.packt.modern.api.model.SignInReq;
 import com.packt.modern.api.model.SignedInUser;
 import com.packt.modern.api.model.User;
 import com.packt.modern.api.service.UserService;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RestController;
 
+import static org.springframework.http.ResponseEntity.*;
+
 /**
  * @author : github.com/sharmasourabh
- * @project : Chapter06 - Modern API Development with Spring and Spring Boot
- **/
+ * @project : Chapter06 - Modern API Development with Spring and Spring Boot Ed 2
+ */
 @RestController
 public class AuthController implements UserApi {
 

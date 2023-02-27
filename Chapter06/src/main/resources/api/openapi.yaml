@@ -683,7 +683,7 @@ paths:
               $ref: '#/components/schemas/ShippingReq'
       responses:
         201:
-          description: For successful fetch.
+          description: For successful post.
           content:
             application/xml:
               schema:
@@ -691,6 +691,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Authorization'
+  /api/v1/shipping/{id}:
     get:
       tags:
         - shipment
@@ -923,7 +924,7 @@ components:
           format: int32
         unitPrice:
           description: The item's price per unit
-          type: BigDecimal
+          $ref: '#/components/schemas/BigDecimal'
     Order:
       description: Represents an order
       type: object
@@ -948,7 +949,7 @@ components:
             $ref: '#/components/schemas/Item'
         total:
           description: Order total
-          type: BigDecimal
+          $ref: '#/components/schemas/BigDecimal'
         payment:
           $ref: '#/components/schemas/Payment'
         shipment:
@@ -1127,6 +1128,8 @@ components:
       type: object
       xml:
         name: URI
+    BigDecimal:
+      type: BigDecimal
     Authorization:
       type: object
       properties:
@@ -1163,7 +1166,7 @@ components:
           $ref: '#/components/schemas/Card'
         amount:
           description: Payment amount
-          type: BigDecimal
+          $ref: '#/components/schemas/BigDecimal'
       xml:
         name: PaymentReq
     CustomerInfoOnCard:
@@ -1196,7 +1199,7 @@ components:
           type: string
         price:
           description: Product price
-          type: BigDecimal
+          $ref: '#/components/schemas/BigDecimal'
         count:
           description: Product count
           type: integer

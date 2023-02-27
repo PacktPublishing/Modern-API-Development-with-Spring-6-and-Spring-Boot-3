@@ -1,18 +1,14 @@
 package com.packt.modern.api.entity;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+
 import java.util.UUID;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 /**
  * @author : github.com/sharmasourabh
- * @project : Chapter06 - Modern API Development with Spring and Spring Boot
- **/
+ * @project : Chapter06 - Modern API Development with Spring and Spring Boot Ed 2
+ */
 @Entity
 @Table(name = "tag")
 public class TagEntity {

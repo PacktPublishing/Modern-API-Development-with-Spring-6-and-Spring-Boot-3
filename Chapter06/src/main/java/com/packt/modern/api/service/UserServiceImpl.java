@@ -12,13 +12,6 @@ import com.packt.modern.api.model.User;
 import com.packt.modern.api.repository.UserRepository;
 import com.packt.modern.api.repository.UserTokenRepository;
 import com.packt.modern.api.security.JwtManager;
-import java.math.BigInteger;
-import java.security.SecureRandom;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Random;
-import java.util.UUID;
-import java.util.concurrent.atomic.AtomicReference;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -26,10 +19,18 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Random;
+import java.util.UUID;
+import java.util.concurrent.atomic.AtomicReference;
+
 /**
  * @author : github.com/sharmasourabh
- * @project : Chapter06 - Modern API Development with Spring and Spring Boot
- **/
+ * @project : Chapter06 - Modern API Development with Spring and Spring Boot Ed 2
+ */
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -38,8 +39,11 @@ public class UserServiceImpl implements UserService {
   private final PasswordEncoder bCryptPasswordEncoder;
   private final JwtManager tokenManager;
 
-  public UserServiceImpl(UserRepository repository, UserTokenRepository userTokenRepository,
-      PasswordEncoder bCryptPasswordEncoder, JwtManager tokenManager) {
+  public UserServiceImpl(
+      UserRepository repository,
+      UserTokenRepository userTokenRepository,
+      PasswordEncoder bCryptPasswordEncoder,
+      JwtManager tokenManager) {
     this.repository = repository;
     this.userTokenRepository = userTokenRepository;
     this.bCryptPasswordEncoder = bCryptPasswordEncoder;
@@ -64,12 +68,14 @@ public class UserServiceImpl implements UserService {
   @Override
   public Optional<CardEntity> getCardByCustomerId(String id) {
     AtomicReference<Optional<CardEntity>> cardEntity = new AtomicReference<>(Optional.empty());
-    repository.findById(UUID.fromString(id))
-        .ifPresent(ue -> {
-          if (Objects.nonNull(ue.getCard()) && !ue.getCard().isEmpty()) {
-            cardEntity.set(Optional.of(ue.getCard().get(0)));
-          }
-        });
+    repository
+        .findById(UUID.fromString(id))
+        .ifPresent(
+            ue -> {
+              if (Objects.nonNull(ue.getCard()) && !ue.getCard().isEmpty()) {
+                cardEntity.set(Optional.of(ue.getCard().get(0)));
+              }
+            });
     return cardEntity.get();
   }
 
@@ -101,29 +107,41 @@ public class UserServiceImpl implements UserService {
   }
 
   private SignedInUser createSignedInUser(UserEntity userEntity) {
-    String token = tokenManager.create(org.springframework.security.core.userdetails.User.builder()
+    String token =
+        tokenManager.create(
+            org.springframework.security.core.userdetails.User.builder()
+                .username(userEntity.getUsername())
+                .password(userEntity.getPassword())
+                .authorities(
+                    Objects.nonNull(userEntity.getRole()) ? userEntity.getRole().name() : "")
+                .build());
+    return new SignedInUser()
         .username(userEntity.getUsername())
-        .password(userEntity.getPassword())
-        .authorities(Objects.nonNull(userEntity.getRole()) ? userEntity.getRole().name() : "")
-        .build());
-    return new SignedInUser().username(userEntity.getUsername()).accessToken(token)
+        .accessToken(token)
         .userId(userEntity.getId().toString());
   }
 
   @Override
   public Optional<SignedInUser> getAccessToken(RefreshToken refreshToken) {
     // You may add an additional validation for time that would remove/invalidate the refresh token
-    return userTokenRepository.findByRefreshToken(refreshToken.getRefreshToken())
-        .map(ut -> Optional.of(createSignedInUser(ut.getUser()).refreshToken(refreshToken.getRefreshToken())))
+    return userTokenRepository
+        .findByRefreshToken(refreshToken.getRefreshToken())
+        .map(
+            ut ->
+                Optional.of(
+                    createSignedInUser(ut.getUser()).refreshToken(refreshToken.getRefreshToken())))
         .orElseThrow(() -> new InvalidRefreshTokenException("Invalid token."));
   }
 
   @Override
   public void removeRefreshToken(RefreshToken refreshToken) {
-    userTokenRepository.findByRefreshToken(refreshToken.getRefreshToken())
-        .ifPresentOrElse(userTokenRepository::delete, () -> {
-          throw new InvalidRefreshTokenException("Invalid token.");
-        });
+    userTokenRepository
+        .findByRefreshToken(refreshToken.getRefreshToken())
+        .ifPresentOrElse(
+            userTokenRepository::delete,
+            () -> {
+              throw new InvalidRefreshTokenException("Invalid token.");
+            });
   }
 
   @Override
@@ -133,8 +151,9 @@ public class UserServiceImpl implements UserService {
     }
     final String uname = username.trim();
     Optional<UserEntity> oUserEntity = repository.findByUsername(uname);
-    UserEntity userEntity = oUserEntity.orElseThrow(
-        () -> new UsernameNotFoundException(String.format("Given user(%s) not found.", uname)));
+    UserEntity userEntity =
+        oUserEntity.orElseThrow(
+            () -> new UsernameNotFoundException(String.format("Given user(%s) not found.", uname)));
     return userEntity;
   }
 
@@ -155,9 +174,11 @@ public class UserServiceImpl implements UserService {
   // or can use org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric(n)
   private static class RandomHolder {
     static final Random random = new SecureRandom();
+
     public static String randomKey(int length) {
-      return String.format("%"+length+"s", new BigInteger(length*5/*base 32,2^5*/, random)
-          .toString(32)).replace('\u0020', '0');
+      return String.format(
+              "%" + length + "s", new BigInteger(length * 5 /*base 32,2^5*/, random).toString(32))
+          .replace('\u0020', '0');
     }
   }
 }

@@ -2,26 +2,27 @@ package com.packt.modern.api.service;
 
 import com.packt.modern.api.entity.CartEntity;
 import com.packt.modern.api.model.Item;
+import jakarta.validation.Valid;
+
 import java.util.List;
-import javax.validation.Valid;
 
 /**
  * @author : github.com/sharmasourabh
- * @project : Chapter06 - Modern API Development with Spring and Spring Boot
- **/
+ * @project : Chapter06 - Modern API Development with Spring and Spring Boot Ed 2
+ */
 public interface CartService {
 
-  public List<Item> addCartItemsByCustomerId(String customerId, @Valid Item item);
+  List<Item> addCartItemsByCustomerId(String customerId, @Valid Item item);
 
-  public List<Item> addOrReplaceItemsByCustomerId(String customerId, @Valid Item item);
+  List<Item> addOrReplaceItemsByCustomerId(String customerId, @Valid Item item);
 
-  public void deleteCart(String customerId);
+  void deleteCart(String customerId);
 
-  public void deleteItemFromCart(String customerId, String itemId);
+  void deleteItemFromCart(String customerId, String itemId);
 
-  public CartEntity getCartByCustomerId(String customerId);
+  CartEntity getCartByCustomerId(String customerId);
 
-  public List<Item> getCartItemsByCustomerId(String customerId);
+  List<Item> getCartItemsByCustomerId(String customerId);
 
-  public Item getCartItemsByItemId(String customerId, String itemId);
+  Item getCartItemsByItemId(String customerId, String itemId);
 }

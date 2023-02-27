@@ -4,23 +4,25 @@ import com.packt.modern.api.ShipmentApi;
 import com.packt.modern.api.hateoas.ShipmentRepresentationModelAssembler;
 import com.packt.modern.api.model.Shipment;
 import com.packt.modern.api.service.ShipmentService;
-import java.util.List;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * @author : github.com/sharmasourabh
- * @project : Chapter06 - Modern API Development with Spring and Spring Boot
- **/
+ * @project : Chapter06 - Modern API Development with Spring and Spring Boot Ed 2
+ */
 @RestController
 public class ShipmentController implements ShipmentApi {
 
-  private ShipmentService service;
+  private final ShipmentService service;
   private final ShipmentRepresentationModelAssembler assembler;
 
-  public ShipmentController(ShipmentService service, ShipmentRepresentationModelAssembler assembler) {
+  public ShipmentController(
+      ShipmentService service, ShipmentRepresentationModelAssembler assembler) {
     this.service = service;
     this.assembler = assembler;
   }

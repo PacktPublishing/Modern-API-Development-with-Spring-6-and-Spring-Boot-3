@@ -1,18 +1,19 @@
 plugins {
-    /* https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.4-Release-Notes */
-    id 'org.springframework.boot' version '2.4.1'
-    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'org.springframework.boot' version '3.0.1'
+    id 'io.spring.dependency-management' version '1.1.0'
     id 'java'
-    id 'org.hidetake.swagger.generator' version '2.18.2'
+    id 'org.hidetake.swagger.generator' version '2.19.2'
 }
 
 group = 'com.packt.modern.api'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = JavaVersion.VERSION_15
+sourceCompatibility = JavaVersion.VERSION_17
+
+processResources {
+    dependsOn(generateSwaggerCode)
+}
 
 swaggerSources {
-    def typeMappings = 'URI=URI, BigDecimal=BigDecimal, EntityModel=EntityModel'
-    def importMappings = 'URI=java.net.URI, BigDecimal=java.math.BigDecimal, EntityModel=org.springframework.hateoas.EntityModel'
     eStore {
         def apiYaml = "${rootDir}/src/main/resources/api/openapi.yaml"
         def configJson = "${rootDir}/src/main/resources/api/config.json"
@@ -21,11 +22,8 @@ swaggerSources {
         code {
             language = 'spring'
             configFile = file(configJson)
-            rawOptions = ['--ignore-file-override', ignoreFile, '--type-mappings',
-                          typeMappings, '--import-mappings', importMappings] as List<String>
+            rawOptions = ['--ignore-file-override', ignoreFile] as List<String>
             components = [models: true, apis: true, supportingFiles: 'ApiUtil.java']
-            //templateDir = file("${rootDir}/src/main/resources/templates")
-            //dependsOn validation // Should be uncommented once plugin starts supporting OA 3 validation
         }
     }
 }
@@ -36,17 +34,19 @@ sourceSets.main.resources.srcDir "${swaggerSources.eStore.code.outputDir}/src/ma
 
 repositories {
     mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
 }
 
 dependencies {
     // OpenAPI Starts
-    swaggerCodegen 'org.openapitools:openapi-generator-cli:5.0.0'
-    compileOnly 'io.swagger:swagger-annotations:1.6.2'
+    swaggerCodegen 'org.openapitools:openapi-generator-cli:6.2.1'
+    compileOnly 'io.swagger:swagger-annotations:1.6.4'
     compileOnly 'org.springframework.boot:spring-boot-starter-validation'
-    compileOnly 'org.openapitools:jackson-databind-nullable:0.2.1'
+    compileOnly 'org.openapitools:jackson-databind-nullable:0.2.3'
     implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml'
     implementation 'org.springframework.boot:spring-boot-starter-hateoas'
-    compileOnly 'io.springfox:springfox-oas:3.0.0'
+    // required for schema in swagger generated code
+    implementation 'io.springfox:springfox-oas:3.0.0'
     // OpenAPI Ends
 
     // DB Starts
@@ -56,9 +56,8 @@ dependencies {
     // DB Ends
 
     // Security Starts
-    //implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
-    implementation 'com.auth0:java-jwt:3.12.0'
+    implementation 'com.auth0:java-jwt:4.3.0'
     // Security Ends
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -67,6 +66,13 @@ dependencies {
 }
 
 test {
-    jvmArgs '--enable-preview'
     useJUnitPlatform()
+}
+
+bootJar {
+    manifest {
+        attributes 'Implementation-Version': "${version}"
+        attributes 'Implementation-Title': "${project.name}"
+        attributes 'Manifest-Version': "1.0"
+    }
 }

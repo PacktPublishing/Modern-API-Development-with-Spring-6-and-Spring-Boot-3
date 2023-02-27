@@ -1,30 +1,18 @@
 package com.packt.modern.api.entity;
 
-import java.util.Collections;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 /**
  * @author : github.com/sharmasourabh
- * @project : Chapter06 - Modern API Development with Spring and Spring Boot
- **/
+ * @project : Chapter06 - Modern API Development with Spring and Spring Boot Ed 2
+ */
 @Entity
-@Table(name = "user")
+@Table(name = "\"user\"")
 public class UserEntity {
   @Id
   @GeneratedValue
@@ -62,9 +50,8 @@ public class UserEntity {
   @JoinTable(
       name = "USER_ADDRESS",
       joinColumns = @JoinColumn(name = "USER_ID"),
-      inverseJoinColumns = @JoinColumn(name = "ADDRESS_ID")
-  )
-  private List<AddressEntity> addresses = Collections.emptyList();;
+      inverseJoinColumns = @JoinColumn(name = "ADDRESS_ID"))
+  private List<AddressEntity> addresses = new ArrayList<>();
 
   @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, orphanRemoval = true)
   private List<CardEntity> cards;
@@ -151,8 +138,7 @@ public class UserEntity {
     return addresses;
   }
 
-  public UserEntity setAddresses(
-      List<AddressEntity> addresses) {
+  public UserEntity setAddresses(List<AddressEntity> addresses) {
     this.addresses = addresses;
     return this;
   }
@@ -195,20 +181,40 @@ public class UserEntity {
 
   @Override
   public String toString() {
-    return "UserEntity{" +
-        "id=" + id +
-        ", username='" + username + '\'' +
-        ", password='" + password + '\'' +
-        ", firstName='" + firstName + '\'' +
-        ", lastName='" + lastName + '\'' +
-        ", email='" + email + '\'' +
-        ", phone='" + phone + '\'' +
-        ", userStatus='" + userStatus + '\'' +
-        ", role=" + role +
-        ", addresses=" + addresses +
-        ", cards=" + cards +
-        ", cart=" + cart +
-        ", orders=" + orders +
-        '}';
+    return "UserEntity{"
+        + "id="
+        + id
+        + ", username='"
+        + username
+        + '\''
+        + ", password='"
+        + password
+        + '\''
+        + ", firstName='"
+        + firstName
+        + '\''
+        + ", lastName='"
+        + lastName
+        + '\''
+        + ", email='"
+        + email
+        + '\''
+        + ", phone='"
+        + phone
+        + '\''
+        + ", userStatus='"
+        + userStatus
+        + '\''
+        + ", role="
+        + role
+        + ", addresses="
+        + addresses
+        + ", cards="
+        + cards
+        + ", cart="
+        + cart
+        + ", orders="
+        + orders
+        + '}';
   }
 }

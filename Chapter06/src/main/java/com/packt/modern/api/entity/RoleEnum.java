@@ -6,13 +6,11 @@ import org.springframework.security.core.GrantedAuthority;
 
 /**
  * @author : github.com/sharmasourabh
- * @project : Chapter06 - Modern API Development with Spring and Spring Boot
- **/
+ * @project : Chapter06 - Modern API Development with Spring and Spring Boot Ed 2
+ */
 public enum RoleEnum implements GrantedAuthority {
   USER(Const.USER),
-
   ADMIN(Const.ADMIN),
-
   CSR(Const.CSR);
 
   private String authority;
@@ -43,7 +41,6 @@ public enum RoleEnum implements GrantedAuthority {
   }
 
   public class Const {
-
     public static final String ADMIN = "ROLE_ADMIN";
     public static final String USER = "ROLE_USER";
     public static final String CSR = "ROLE_CSR";

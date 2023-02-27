@@ -1,17 +1,14 @@
 package com.packt.modern.api.entity;
 
+import jakarta.persistence.*;
+
 import java.sql.Timestamp;
 import java.util.UUID;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 /**
  * @author : github.com/sharmasourabh
- * @project : Chapter06 - Modern API Development with Spring and Spring Boot
- **/
+ * @project : Chapter06 - Modern API Development with Spring and Spring Boot Ed 2
+ */
 @Entity
 @Table(name = "shipment")
 public class ShipmentEntity {
@@ -52,5 +49,4 @@ public class ShipmentEntity {
     this.carrier = carrier;
     return this;
   }
-
 }

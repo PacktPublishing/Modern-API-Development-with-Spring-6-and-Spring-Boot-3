@@ -2,17 +2,20 @@ package com.packt.modern.api.service;
 
 import com.packt.modern.api.entity.OrderEntity;
 import com.packt.modern.api.model.NewOrder;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+
 import java.util.Optional;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 /**
  * @author : github.com/sharmasourabh
- * @project : Chapter06 - Modern API Development with Spring and Spring Boot
- **/
+ * @project : Chapter06 - Modern API Development with Spring and Spring Boot Ed 2
+ */
 public interface OrderService {
 
-  public Optional<OrderEntity> addOrder(@Valid NewOrder newOrder);
-  public Iterable<OrderEntity> getOrdersByCustomerId(@NotNull @Valid String customerId);
-  public Optional<OrderEntity> getByOrderId(String id);
+  Optional<OrderEntity> addOrder(@Valid NewOrder newOrder);
+
+  Iterable<OrderEntity> getOrdersByCustomerId(@NotNull @Valid String customerId);
+
+  Optional<OrderEntity> getByOrderId(String id);
 }

@@ -1,31 +1,18 @@
 package com.packt.modern.api.entity;
 
 import com.packt.modern.api.model.Order.StatusEnum;
+import jakarta.persistence.*;
+
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 /**
  * @author : github.com/sharmasourabh
- * @project : Chapter06 - Modern API Development with Spring and Spring Boot
- **/
+ * @project : Chapter06 - Modern API Development with Spring and Spring Boot Ed 2
+ */
 @Entity
 @Table(name = "orders")
 public class OrderEntity {
@@ -42,14 +29,18 @@ public class OrderEntity {
   private StatusEnum status;
 
   @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  @JoinColumn(name="CUSTOMER_ID", nullable=false)
+  @JoinColumn(name = "CUSTOMER_ID", nullable = false)
   private UserEntity userEntity;
 
   @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ID", insertable=false, updatable=false)
+  @JoinColumn(
+      name = "ADDRESS_ID",
+      referencedColumnName = "ID",
+      insertable = false,
+      updatable = false)
   private AddressEntity addressEntity;
 
-  @OneToOne(cascade = CascadeType.ALL )
+  @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "PAYMENT_ID", referencedColumnName = "ID")
   private PaymentEntity paymentEntity;
 
@@ -68,9 +59,8 @@ public class OrderEntity {
   @JoinTable(
       name = "ORDER_ITEM",
       joinColumns = @JoinColumn(name = "ORDER_ID"),
-      inverseJoinColumns = @JoinColumn(name = "ITEM_ID")
-  )
-  private List<ItemEntity> items = Collections.emptyList();
+      inverseJoinColumns = @JoinColumn(name = "ITEM_ID"))
+  private List<ItemEntity> items = new ArrayList<>();
 
   @OneToOne(mappedBy = "orderEntity")
   private AuthorizationEntity authorizationEntity;
@@ -169,26 +159,36 @@ public class OrderEntity {
     return authorizationEntity;
   }
 
-  public OrderEntity setAuthorizationEntity(
-      AuthorizationEntity authorizationEntity) {
+  public OrderEntity setAuthorizationEntity(AuthorizationEntity authorizationEntity) {
     this.authorizationEntity = authorizationEntity;
     return this;
   }
 
   @Override
   public String toString() {
-    return "OrderEntity{" +
-        "id=" + id +
-        ", total=" + total +
-        ", status=" + status +
-        ", userEntity=" + userEntity +
-        ", addressEntity=" + addressEntity +
-        ", paymentEntity=" + paymentEntity +
-        ", shipment=" + shipment +
-        ", cardEntity=" + cardEntity +
-        ", orderDate=" + orderDate +
-        ", items=" + items +
-        ", authorizationEntity=" + authorizationEntity +
-        '}';
+    return "OrderEntity{"
+        + "id="
+        + id
+        + ", total="
+        + total
+        + ", status="
+        + status
+        + ", userEntity="
+        + userEntity
+        + ", addressEntity="
+        + addressEntity
+        + ", paymentEntity="
+        + paymentEntity
+        + ", shipment="
+        + shipment
+        + ", cardEntity="
+        + cardEntity
+        + ", orderDate="
+        + orderDate
+        + ", items="
+        + items
+        + ", authorizationEntity="
+        + authorizationEntity
+        + '}';
   }
 }

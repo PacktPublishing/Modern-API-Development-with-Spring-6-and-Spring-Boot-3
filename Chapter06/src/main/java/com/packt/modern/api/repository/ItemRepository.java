@@ -15,7 +15,7 @@ import java.util.UUID;
 public interface ItemRepository extends CrudRepository<ItemEntity, UUID> {
   @Query(
       value =
-          "select i.* from ecomm.cart c, ecomm.item i, ecomm.user u, ecomm.cart_item ci where u.id = :customerId and c.user_id=u.id and c.id=ci.cart_id and i.id=ci.item_id",
+          "select i.* from ecomm.cart c, ecomm.item i, ecomm.\"user\" u, ecomm.cart_item ci where u.id = :customerId and c.user_id=u.id and c.id=ci.cart_id and i.id=ci.item_id",
       nativeQuery = true)
   Iterable<ItemEntity> findByCustomerId(String customerId);
 

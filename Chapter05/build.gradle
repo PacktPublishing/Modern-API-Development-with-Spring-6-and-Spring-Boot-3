@@ -77,3 +77,11 @@ configurations.configureEach {
 test {
     useJUnitPlatform()
 }
+
+bootJar {
+    manifest {
+        attributes 'Implementation-Version': "${version}"
+        attributes 'Implementation-Title': "${project.name}"
+        attributes 'Manifest-Version': "1.0"
+    }
+}

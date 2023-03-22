@@ -2,7 +2,7 @@ package com.packt.modern.api.exception;
 
 /**
  * @author : github.com/sharmasourabh
- * @project : Chapter06 - Modern API Development with Spring and Spring Boot Ed 2
+ * @project : Chapter08 - Modern API Development with Spring and Spring Boot Ed 2
  */
 public class InvalidRefreshTokenException extends RuntimeException {
 

@@ -19,7 +19,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 /**
  * @author : github.com/sharmasourabh
- * @project : Chapter06 - Modern API Development with Spring and Spring Boot Ed 2
+ * @project : Chapter08 - Modern API Development with Spring and Spring Boot Ed 2
  */
 @Component
 public class OrderRepresentationModelAssembler

@@ -1,21 +1,11 @@
 package com.packt.modern.api.controller;
 
-import static org.hamcrest.core.Is.is;
-import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.packt.modern.api.entity.ProductEntity;
 import com.packt.modern.api.exception.RestApiErrorHandler;
 import com.packt.modern.api.hateoas.ProductRepresentationModelAssembler;
 import com.packt.modern.api.model.Product;
 import com.packt.modern.api.service.ProductService;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.Optional;
-import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,9 +21,20 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.Optional;
+import java.util.UUID;
+
+import static org.hamcrest.core.Is.is;
+import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 /**
  * @author : github.com/sharmasourabh
- * @project : Chapter08 - Modern API Development with Spring and Spring Boot
+ * @project : Chapter08 - Modern API Development with Spring and Spring Boot Ed 2
  **/
 @ExtendWith(MockitoExtension.class)
 public class ProductControllerTest {

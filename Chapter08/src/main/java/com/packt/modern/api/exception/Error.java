@@ -10,7 +10,7 @@ import java.time.Instant;
  * <p>Complex type that contains error details for a REST API calls.
  *
  * @author : github.com/sharmasourabh
- * @project : Chapter06 - Modern API Development with Spring and Spring Boot Ed 2
+ * @project : Chapter08 - Modern API Development with Spring and Spring Boot Ed 2
  */
 public class Error {
 

@@ -1,10 +1,5 @@
 package com.packt.modern.api.controller;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.packt.modern.api.AppConfig;
 import com.packt.modern.api.entity.ShipmentEntity;
@@ -12,10 +7,6 @@ import com.packt.modern.api.exception.RestApiErrorHandler;
 import com.packt.modern.api.hateoas.ShipmentRepresentationModelAssembler;
 import com.packt.modern.api.model.Shipment;
 import com.packt.modern.api.service.ShipmentService;
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.util.List;
-import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,9 +24,19 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.util.List;
+import java.util.UUID;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+
 /**
  * @author : github.com/sharmasourabh
- * @project : Chapter08 - Modern API Development with Spring and Spring Boot
+ * @project : Chapter08 - Modern API Development with Spring and Spring Boot Ed 2
  **/
 @ExtendWith(MockitoExtension.class)
 public class ShipmentControllerTest {

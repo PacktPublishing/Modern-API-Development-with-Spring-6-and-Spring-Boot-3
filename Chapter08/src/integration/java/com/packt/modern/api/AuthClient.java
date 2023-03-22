@@ -10,7 +10,7 @@ import org.springframework.http.MediaType;
 
 /**
  * @author : github.com/sharmasourabh
- * @project : Chapter08 - Modern API Development with Spring and Spring Boot
+ * @project : Chapter08 - Modern API Development with Spring and Spring Boot Ed 2
  **/
 public class AuthClient {
 

@@ -45,7 +45,7 @@ import static org.springframework.boot.autoconfigure.security.servlet.PathReques
 
 /**
  * @author : github.com/sharmasourabh
- * @project : Chapter06 - Modern API Development with Spring and Spring Boot Ed 2
+ * @project : Chapter08 - Modern API Development with Spring and Spring Boot Ed 2
  */
 @Configuration
 @EnableWebSecurity

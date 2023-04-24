@@ -13,7 +13,7 @@ repositories {
 	mavenLocal()
 }
 
-def grpcVersion = '1.53.0'
+def grpcVersion = '1.54.1'
 dependencies {
 	implementation 'com.packt.modern.api:payment-gateway-api:0.0.1'
 	implementation "io.grpc:grpc-protobuf:${grpcVersion}"

@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '3.0.5'
+    id 'org.springframework.boot' version '3.0.6'
     id 'io.spring.dependency-management' version '1.1.0'
     id 'java'
 }
@@ -16,11 +16,20 @@ repositories {
 def grpcVersion = '1.54.1'
 dependencies {
     implementation 'com.packt.modern.api:payment-gateway-api:0.0.1'
+    implementation "io.grpc:grpc-protobuf:${grpcVersion}"
     implementation "io.grpc:grpc-stub:${grpcVersion}"
-    implementation "com.google.protobuf:protobuf-java-util:3.22.2"
+    implementation "io.grpc:grpc-netty:${grpcVersion}"
+    implementation 'com.google.api.grpc:googleapis-common-protos:0.0.3'
 
+    // logging and tracing
+    implementation 'net.logstash.logback:logstash-logback-encoder:7.3'
+    implementation 'io.micrometer:micrometer-tracing-bridge-brave'
+    implementation 'io.zipkin.reporter2:zipkin-reporter-brave'
+
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation "io.grpc:grpc-testing:${grpcVersion}"
 }
 
 test {

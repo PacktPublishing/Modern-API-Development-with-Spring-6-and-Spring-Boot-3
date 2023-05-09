@@ -1,0 +1,7 @@
+ _  _ ____ ___  ____ ____ _  _    ____ ___  _    ___  ____ _  _ ____ _    ____ ___  _  _ ____ _  _ ___
+ |\/| |  | |  \ |___ |__/ |\ |    |__| |__] |    |  \ |___ |  | |___ |    |  | |__] |\/| |___ |\ |  |
+ |  | |__| |__/ |___ |  \ | \|    |  | |    |    |__/ |___  \/  |___ |___ |__| |    |  | |___ | \|  |
+                                                                with Spring and Spring Boot ${spring-boot.version}
+                                                                                  by Packt Publishing
+ ${application.title} -  ${application.version}
+

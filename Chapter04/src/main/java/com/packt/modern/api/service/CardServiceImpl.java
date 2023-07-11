@@ -5,9 +5,9 @@ import com.packt.modern.api.entity.UserEntity;
 import com.packt.modern.api.model.AddCardReq;
 import com.packt.modern.api.repository.CardRepository;
 import com.packt.modern.api.repository.UserRepository;
+import jakarta.validation.Valid;
 import java.util.Optional;
 import java.util.UUID;
-import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 /**

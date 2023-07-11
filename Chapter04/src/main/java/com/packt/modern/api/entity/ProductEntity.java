@@ -2,7 +2,6 @@ package com.packt.modern.api.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;

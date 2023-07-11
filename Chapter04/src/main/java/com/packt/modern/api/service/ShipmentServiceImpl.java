@@ -2,9 +2,9 @@ package com.packt.modern.api.service;
 
 import com.packt.modern.api.entity.ShipmentEntity;
 import com.packt.modern.api.repository.ShipmentRepository;
+import jakarta.validation.constraints.Min;
 import java.util.List;
 import java.util.UUID;
-import jakarta.validation.constraints.Min;
 import org.springframework.stereotype.Service;
 
 /**

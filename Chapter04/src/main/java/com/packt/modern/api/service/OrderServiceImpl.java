@@ -4,11 +4,11 @@ import com.packt.modern.api.entity.OrderEntity;
 import com.packt.modern.api.exception.ResourceNotFoundException;
 import com.packt.modern.api.model.NewOrder;
 import com.packt.modern.api.repository.OrderRepository;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Service;
 

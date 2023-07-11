@@ -1,7 +1,6 @@
 package com.packt.modern.api.entity;
 
 import jakarta.persistence.*;
-
 import java.util.List;
 import java.util.UUID;
 

@@ -1,21 +1,20 @@
 package com.packt.modern.api.hateoas;
 
+import static java.util.stream.Collectors.toList;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 import com.packt.modern.api.controller.OrderController;
 import com.packt.modern.api.entity.OrderEntity;
 import com.packt.modern.api.model.Order;
 import com.packt.modern.api.service.ItemService;
-import org.springframework.beans.BeanUtils;
-import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
-import org.springframework.stereotype.Component;
-
 import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.StreamSupport;
-
-import static java.util.stream.Collectors.toList;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+import org.springframework.beans.BeanUtils;
+import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
+import org.springframework.stereotype.Component;
 
 /**
  * @author : github.com/sharmasourabh

@@ -1,27 +1,27 @@
 package com.packt.modern.api.service;
 
+import static java.util.stream.Collectors.toList;
+
 import com.packt.modern.api.entity.ItemEntity;
 import com.packt.modern.api.entity.ProductEntity;
 import com.packt.modern.api.model.Item;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
-
-import static java.util.stream.Collectors.toList;
+import org.springframework.stereotype.Service;
 
 /**
  * @author : github.com/sharmasourabh
  * @project : Chapter04 - Modern API Development with Spring and Spring Boot Ed 2
- **/
+ */
 @Service
 public class ItemServiceImpl implements ItemService {
 
   @Override
   public ItemEntity toEntity(Item m) {
     ItemEntity e = new ItemEntity();
-    e.setProduct(new ProductEntity().setId(UUID.fromString(m.getId()))).setPrice(m.getUnitPrice())
+    e.setProduct(new ProductEntity().setId(UUID.fromString(m.getId())))
+        .setPrice(m.getUnitPrice())
         .setQuantity(m.getQuantity());
     return e;
   }

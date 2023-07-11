@@ -3,11 +3,11 @@ package com.packt.modern.api.controller;
 import static org.springframework.http.ResponseEntity.ok;
 
 import com.packt.modern.api.ProductApi;
-import com.packt.modern.api.model.Product;
 import com.packt.modern.api.hateoas.ProductRepresentationModelAssembler;
+import com.packt.modern.api.model.Product;
 import com.packt.modern.api.service.ProductService;
-import java.util.List;
 import jakarta.validation.Valid;
+import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 

@@ -1,10 +1,8 @@
 package com.packt.modern.api.repository;
 
 import com.packt.modern.api.entity.OrderItemEntity;
-import org.springframework.data.repository.CrudRepository;
-
 import java.util.UUID;
-
+import org.springframework.data.repository.CrudRepository;
 
 /**
  * @author : github.com/sharmasourabh

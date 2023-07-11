@@ -1,5 +1,8 @@
 package com.packt.modern.api.service;
 
+import static java.util.stream.Collectors.toList;
+import static org.springframework.objenesis.instantiator.util.UnsafeUtils.getUnsafe;
+
 import com.packt.modern.api.entity.CartEntity;
 import com.packt.modern.api.entity.ItemEntity;
 import com.packt.modern.api.exception.CustomerNotFoundException;
@@ -9,16 +12,12 @@ import com.packt.modern.api.model.Item;
 import com.packt.modern.api.repository.CartRepository;
 import com.packt.modern.api.repository.UserRepository;
 import jakarta.validation.Valid;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
-
-import static java.util.stream.Collectors.toList;
-import static org.springframework.objenesis.instantiator.util.UnsafeUtils.getUnsafe;
+import org.springframework.stereotype.Service;
 
 /**
  * @author : github.com/sharmasourabh

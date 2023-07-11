@@ -2,7 +2,6 @@ package com.packt.modern.api.entity;
 
 import com.packt.modern.api.model.Order.StatusEnum;
 import jakarta.persistence.*;
-
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.ArrayList;

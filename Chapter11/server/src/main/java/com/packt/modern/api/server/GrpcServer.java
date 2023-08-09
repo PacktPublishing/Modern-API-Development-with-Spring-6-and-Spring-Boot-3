@@ -25,9 +25,9 @@ public class GrpcServer {
 
   private Server server;
 
-  private ChargeService chargeService;
-  private SourceService sourceService;
-  private ExceptionInterceptor exceptionInterceptor;
+  private final ChargeService chargeService;
+  private final SourceService sourceService;
+  private final ExceptionInterceptor exceptionInterceptor;
 
   public GrpcServer(SourceService sourceService, ChargeService chargeService, ExceptionInterceptor exceptionInterceptor) {
     this.sourceService = sourceService;

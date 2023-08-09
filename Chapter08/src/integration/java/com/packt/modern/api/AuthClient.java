@@ -14,8 +14,8 @@ import org.springframework.http.MediaType;
  **/
 public class AuthClient {
 
-  private TestRestTemplate restTemplate;
-  private ObjectMapper objectMapper;
+  private final TestRestTemplate restTemplate;
+  private final ObjectMapper objectMapper;
 
   public AuthClient(TestRestTemplate restTemplate, ObjectMapper objectMapper) {
     this.restTemplate = restTemplate;

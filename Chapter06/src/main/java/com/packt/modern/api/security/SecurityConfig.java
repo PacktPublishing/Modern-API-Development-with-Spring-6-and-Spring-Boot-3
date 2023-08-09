@@ -89,7 +89,7 @@ public class SecurityConfig {
         .and()
         .cors()
         .and()
-        .authorizeRequests(req -> req.requestMatchers(toH2Console()).permitAll()
+        .authorizeHttpRequests(req -> req.requestMatchers(toH2Console()).permitAll()
             .requestMatchers(new AntPathRequestMatcher(TOKEN_URL, HttpMethod.POST.name())).permitAll()
             .requestMatchers(new AntPathRequestMatcher(TOKEN_URL, HttpMethod.DELETE.name())).permitAll()
             .requestMatchers(new AntPathRequestMatcher(SIGNUP_URL, HttpMethod.POST.name())).permitAll()

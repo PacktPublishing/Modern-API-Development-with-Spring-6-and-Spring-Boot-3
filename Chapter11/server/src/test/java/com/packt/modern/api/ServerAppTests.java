@@ -38,9 +38,10 @@ class ServerAppTests {
   /**
    * This rule manages automatic graceful shutdown for the registered servers and channels at the
    * end of test.
+   * It was kept static to perform some static operations this class methods. You may refactor if required.
    */
   @Rule
-  private final static GrpcCleanupRule grpcCleanup = new GrpcCleanupRule();
+  public static final GrpcCleanupRule grpcCleanup = new GrpcCleanupRule();
   private static SourceServiceGrpc.SourceServiceBlockingStub blockingStub;
   private static String newlyCreatedSourceId = null;
   @Autowired

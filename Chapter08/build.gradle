@@ -49,7 +49,7 @@ configurations {
     integrationTestRuntime.extendsFrom testRuntime
 }
 
-task integrationTest(type: Test) {
+tasks.register('integrationTest', Test) {
     useJUnitPlatform()
     description = 'Runs the integration tests.'
     group = 'verification'
@@ -62,7 +62,7 @@ integrationTest.mustRunAfter test
 
 jacoco {
     toolVersion = "0.8.8"
-    reportsDir = file("$buildDir/jacoco")
+    reportsDirectory = layout.buildDirectory.dir("$buildDir/jacoco")
 }
 
 jacocoTestReport {

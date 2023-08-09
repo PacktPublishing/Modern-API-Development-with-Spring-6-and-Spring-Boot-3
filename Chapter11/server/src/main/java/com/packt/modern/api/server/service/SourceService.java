@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SourceService extends SourceServiceImplBase {
 
-  private SourceRepository repository;
+  private final SourceRepository repository;
 
   public SourceService(SourceRepository repository) {
     this.repository = repository;

@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ChargeController {
 
   private Logger LOG = LoggerFactory.getLogger(getClass());
-  private GrpcClient client;
+  private final GrpcClient client;
 
   public ChargeController(GrpcClient client) {
     this.client = client;

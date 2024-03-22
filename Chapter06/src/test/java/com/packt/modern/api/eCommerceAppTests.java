@@ -10,10 +10,4 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 @AutoConfigureDataJpa
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class eCommerceAppTests {
-
-  private static final Logger log = LoggerFactory.getLogger(eCommerceAppTests.class);
-
-  @Test
-  void contextLoads() {}
-}
+class eCommerceAppTests {}

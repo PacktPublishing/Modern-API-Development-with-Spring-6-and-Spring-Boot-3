@@ -50,12 +50,8 @@ With the following software and hardware list you can run all code files present
 |            VS Code                          |          |
 | The ELK stack and Zipkin                  |                     |
 
-<!--
 ## Errata
--->
-<!--
 * Page: 385 (Paragraph 4, line 3): **thsose** _should be_ **those**
--->
 
 ### Related products <Other books you may enjoy>
 * Full Stack Development with Spring Boot and React  [[Packt]](https://www.packtpub.com/product/full-stack-development-with-spring-boot-and-react-third-edition/9781801816786) [[Amazon]](https://www.amazon.in/Full-Stack-Development-Spring-React/dp/1801816786)
